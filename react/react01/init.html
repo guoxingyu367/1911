@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='../base/react.min.js'></script>
+    <script src='../base/react-dom.min.js'></script>
+    <script src='../base//browser.min.js'></script>
+    <title>Document</title>
+    <style>
+    .red{
+        background: red;
+        height: 100px;
+    }
+    .green{
+        background: green;
+        height: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div id='app'>
+
+    </div>
+    <script type='text/babel'>
+    // 条件渲染
+    //   let Component = React.createClass({
+    //       name:'hanmeimei',
+    //       show:true,
+    //       hide:true,
+    //       renderP(){
+    //         if(this.show){
+    //             return(
+    //                 <p className='red'>渲染</p>
+    //             )
+    //         }else{
+    //             return
+    //         }
+    //       },
+    //       render(){
+    //           console.log(this)
+    //           return(
+    //             //   <p className='red'>渲染</p>
+    //             <div>
+    //                 {this.show?<p className='red'>hehe</p>:''} 
+    //                 {!this.show||<p className='red'>xixi</p>}
+    //                 {this.renderP()}   
+    //             </div>
+    //           )
+    //       }
+    //   })
+    //   ReactDOM.render(<Component/>,app)
+    //列表渲染
+    /////////////////////////////////////////
+    // let Component = React.createClass({
+    //    list:['a','b','c'],
+    //    render(){
+    //        return(
+    //            <ul>
+    //                <li>item</li>
+    //                {this.list.map((item)=>{
+    //                     return <li>{item}</li>
+    //                })}
+    //            </ul>
+    //        )
+    //    }
+    // })
+    // ReactDOM.render(<Component/>,app)
+///////////////////////////////////////////////////
+    // 属性绑定
+    // let Component=React.createClass({
+    //     color:false,
+    //     render(){
+    //         return(
+    //             <div className={this.color?'red':'green'}>
+                
+    //             </div>
+    //         )
+    //     }
+    // })
+    // ReactDOM.render(<Component/>,app)
+    ////////////////////////////////////////////
+    //事件绑定
+    let Component= React.createClass({
+        test(a,b,c){
+            console.log(a,b,c)
+        },
+        render(){
+            return(
+                <div>
+                    <button onClick={this.test.bind(this,1,2,3)}>button</button>
+                    <button onClick={this.test.bind(this,'a','b','c')}>button2</button>
+                </div>
+            )
+        }
+    })
+    ReactDOM.render(<Component/>,app)
+    </script>
+</body>
+</html>
