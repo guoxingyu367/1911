@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='../base/react.min.js'></script>
+    <script src='../base/react-dom.min.js'></script>
+    <script src='../base/browser.min.js'></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+
+    </div>
+    <script type='text/babel'>
+        let Father=React.createClass({
+            getInitialState(){
+                return{
+                    hairType:'小平头'
+                }
+            },
+            changHair(){
+                this.setState({hairType:'光'})
+            },
+            render(){
+                console.log('父',this)
+                return(
+                    <div>
+                        <h3>父组件</h3>
+                        <p>{this.state.hairType}</p>
+                        <button onClick={this.changHair}>改发型</button>
+                        <Son hair={this.state.hairType}></Son>
+                        
+                    </div>
+                )
+            }
+        })
+        let Son=React.createClass({
+            getDefaultProps(){
+                return{
+                    hair:'杀马特'
+                }
+            },
+            render(){
+                console.log('子',this)
+                let {props,state} =this
+                return(
+                    <div>
+                    <h6>子组件</h6>
+                    <p>小儿子：{props.hair}</p>
+                    {/*嵌套了就能用父组件的state的值*/} 
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<Father/>,app)
+    </script>
+</body>
+</html>

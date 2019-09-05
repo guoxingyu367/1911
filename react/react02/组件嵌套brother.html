@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../base/react.min.js"></script>
+    <!-- 提供了react对象 -->
+    <script src="../base/react-dom.min.js"></script>
+    <!--  提供reactdom‘对象-->
+    <script src="../base/browser.min.js"></script>
+    <!-- 帮助浏览器解析jsx javascriptxml   -->
+    <title>Document</title>
+    <style>
+            .test{
+              width: 100px;
+              height: 100px;
+              background: red;
+            }
+            </style>
+</head>
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        let Father=React.createClass({
+            getInitialState(){
+                return{
+                    show:true
+                }
+            },
+            toggle(){
+                alert('爸爸的方法')
+                this.setState({show:!this.state.show})
+            },
+            render(){
+                console.log('父组件',this)
+                return(
+                   <div>
+                   <h3>父组件</h3>
+                    {/*fafun会成为son1里props里的方法*/}
+                   <Son1 fafun={this.toggle}></Son1>
+                    {/*show会成为son2里props里的数据*/}
+                   <Son2 show={this.state.show}></Son2>
+                   </div>
+                )
+            }
+        })
+        let Son1=React.createClass({
+           
+            render(){
+                console.log('子组件1',this)
+                return(
+                    <div>
+                        <h6>子组件1</h6>
+                        <button onClick={this.props.fafun}>sonbtn</button>
+                    </div>
+                )
+            }
+        })
+        let Son2=React.createClass({
+           
+           render(){
+               console.log('子组件2',this)
+               return(
+                   <div>
+                       <h6>子组件2</h6>
+                       {!this.props.show||<div className='test'></div>}
+                   </div>
+               )
+           }
+       })
+        ReactDOM.render(<Father/>,app)
+    </script>
+</body>
+</html>

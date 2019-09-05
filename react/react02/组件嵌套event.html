@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../base/react.min.js"></script>
+    <!-- 提供了react对象 -->
+    <script src="../base/react-dom.min.js"></script>
+    <!--  提供reactdom‘对象-->
+    <script src="../base/browser.min.js"></script>
+    <!-- 帮助浏览器解析jsx javascriptxml   -->
+    <title>Document</title>
+    <style>
+            .test{
+              width: 100px;
+              height: 100px;
+              background: red;
+            }
+            </style>
+</head>
+<body>
+    <div id='app'></div>
+    <script type='text/babel'>
+        let Father=React.createClass({
+            getInitialState(){
+                return{
+                    show:true
+                }
+            },
+            fatherfun(){
+                alert('爸爸的方法')
+                this.setState({show:!this.state.show})
+            },
+            render(){
+                console.log('父组件',this)
+                return(
+                   <div>
+                   <h3>父组件</h3>
+                   {!this.state.show||<div className='test'></div>}
+                   <Son hehe={this.fatherfun}></Son>
+                   {/*这么一写就会在子组件的props上加上hehe这个方法,想用这个方法就可以在自组件中使用*/}
+                   </div>
+                )
+            }
+        })
+        let Son=React.createClass({
+            sonfun(){
+                this.props.hehe()
+            },
+            render(){
+                console.log('子组件',this)
+                return(
+                    <div>
+                        <h6>子组件</h6>
+                        <button onClick={this.sonfun}>sonbtn</button>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<Father/>,app)
+    </script>
+</body>
+</html>

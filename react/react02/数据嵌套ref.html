@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='../base/react.min.js'></script>
+    <script src='../base/react-dom.min.js'></script>
+    <script src='../base/browser.min.js'></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+
+    </div>
+    <script type='text/babel'>
+        let Father=React.createClass({
+            getInitialState(){
+                return{
+                    hairType:'小平头'
+                }
+            },
+            changHair(){
+                console.log(1111)
+                this.refs.hehe.sontest()
+                //this.refs里拿到了自组件的所有东西
+            },
+            render(){
+                console.log('父',this)
+                return(
+                    <div>
+                        <h3>父组件</h3>
+                        <p>{this.state.hairType}</p>
+                        <button onClick={this.changHair}>改发型</button>
+                        <Son ref='hehe'></Son>
+                        {/*这一加ref，父组件的this中就会出现ref*/}
+                    </div>
+                )
+            }
+        })
+        let Son=React.createClass({
+            getDefaultProps(){
+                return{
+                    hair:'杀马特'
+                }
+            },
+            sontest(){
+                alert('点击了自组件')
+            },
+            render(){
+                console.log('子',this)
+                let {props,state} =this
+                return(
+                    <div>
+                    <h6>子组件</h6>
+                    <p>小儿子：{props.hair}</p>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<Father/>,app)
+    </script>
+</body>
+</html>

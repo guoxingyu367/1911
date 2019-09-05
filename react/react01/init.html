@@ -72,6 +72,7 @@
     // let Component=React.createClass({
     //     color:false,
     //     render(){
+    //         console.log(this)
     //         return(
     //             <div className={this.color?'red':'green'}>
                 
@@ -82,20 +83,22 @@
     // ReactDOM.render(<Component/>,app)
     ////////////////////////////////////////////
     //事件绑定
-    let Component= React.createClass({
-        test(a,b,c){
-            console.log(a,b,c)
-        },
-        render(){
-            return(
-                <div>
-                    <button onClick={this.test.bind(this,1,2,3)}>button</button>
-                    <button onClick={this.test.bind(this,'a','b','c')}>button2</button>
-                </div>
-            )
-        }
-    })
-    ReactDOM.render(<Component/>,app)
+    // let Component= React.createClass({
+    //     test(a,b,c){
+    //         console.log(a,b,c)
+    //     },
+    //     render(){
+    //         console.log(this)
+
+    //         return(
+    //             <div>
+    //                 <button onClick={this.test.bind(this,1,2,3)}>button</button>
+    //                 <button onClick={this.test.bind(this,'a','b','c')}>button2</button>
+    //             </div>
+    //         )
+    //     }
+    // })
+    // ReactDOM.render(<Component/>,app)
     </script>
 </body>
 </html>

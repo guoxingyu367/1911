@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='../base/react.min.js'></script>
+    <script src='../base/react-dom.min.js'></script>
+    <script src='../base/browser.min.js'></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+
+    </div>
+    <script type='text/babel'>
+        let Component=React.createClass({
+            getDefaultProps(){//加上这个方法this中出现props值
+                return{
+                    hehe:'123'
+                }
+            },
+            render(){
+                console.log(this)
+                let {props}=this
+                return(
+                    <div>
+                    {props.hehe}
+                    </div>
+                )
+            }
+        })
+        // let name='hanmeimemi'
+        ReactDOM.render(<Component/>,app)
+    </script>
+</body>
+</html>

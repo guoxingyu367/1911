@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='../base/react.min.js'></script>
+    <script src='../base/browser.min.js'></script>
+    <script src='../base/react-dom.min.js'></script>
+
+    <!-- 不能把react.min.js放在最后 -->
+   
+    <title>Document</title>
+    <style>
+        .test{
+            width:100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+    </div>
+    <script type='text/babel'>
+        let Component=React.createClass({
+            getInitialState(){//加了getInitialState，this 里的state就会有值，否则为null
+                return{
+                    show:true,
+                    name:'韩梅梅'
+                }    
+            },
+            toggle(){
+                // this.state.show=!this.state.show
+                console.log(this.state.show)
+                this.setState({show:!this.state.show})
+                // this.setState({})//加上setState才会改变state的值
+            },
+            render(){
+                console.log(this)
+                let {state}=this
+                return(
+                    <div>
+                        {!state.show||<div className='test'></div>}
+                        <button onClick={this.toggle}>点我</button>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<Component/>,app)
+    </script>
+</body>
+</html>
